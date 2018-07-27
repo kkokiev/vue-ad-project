@@ -10,8 +10,6 @@
 
 <script>
 export default {
-  data () {
-    return {}
-  }
+  data: () => ({})
 }
 </script>
