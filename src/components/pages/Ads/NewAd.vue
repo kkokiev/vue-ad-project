@@ -1,8 +1,59 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12>
-        <h1>NewAd</h1>
+      <v-flex xs12 sm6 offset-sm3>
+        <h1 class="text--secondary mb-3">Create new ad</h1>
+
+        <v-form v-model="form.valid" ref="form" validation class="mb-3">
+          <v-text-field
+            name="title"
+            label="Add title"
+            type="text"
+            v-model="form.title"
+            :rules="rules.title"
+          >
+          </v-text-field>
+
+          <v-textarea
+            name="description"
+            label="Add description"
+            type="text"
+            v-model="form.description"
+            :rules="rules.description"
+          ></v-textarea>
+        </v-form>
+
+        <v-layout row class="mb-3">
+          <v-flex xs12>
+            <v-btn class="primary">
+              Upload image
+              <v-icon right>cloud_upload</v-icon>
+            </v-btn>
+
+            <v-switch
+              label="Add to promo?"
+              v-model="form.promo"
+            ></v-switch>
+          </v-flex>
+        </v-layout>
+
+        <v-layout row>
+          <v-flex xs12>
+            <img src="https://cdn.vuetifyjs.com/images/carousel/planet.jpg" height="120">
+          </v-flex>
+        </v-layout>
+
+        <v-layout row>
+          <v-flex xs12>
+            <v-spacer></v-spacer>
+            <v-btn
+              class="success"
+              @click="onSubmit"
+              :disabled="!form.valid"
+            >Create ad</v-btn>
+          </v-flex>
+        </v-layout>
+
       </v-flex>
     </v-layout>
   </v-container>
@@ -10,6 +61,36 @@
 
 <script>
 export default {
-  data: () => ({})
+  data () {
+    return {
+      form: {
+        title: '',
+        description: '',
+        promo: false,
+        valid: false
+      },
+      rules: {
+        title: [
+          v => !!v || 'Title is required'
+        ],
+        description: [
+          v => !!v || 'Description is required'
+        ]
+      }
+    }
+  },
+  methods: {
+    onSubmit () {
+      if (this.$refs.form.validate()) {
+        const ad = {
+          title: this.form.title,
+          description: this.form.description,
+          promo: this.form.promo
+        }
+
+        console.log(ad)
+      }
+    }
+  }
 }
 </script>
