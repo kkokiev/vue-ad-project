@@ -87,10 +87,11 @@ export default {
         const ad = {
           title: this.form.title,
           description: this.form.description,
-          promo: this.form.promo
+          promo: this.form.promo,
+          imageSrc: 'https://i2.wp.com/wp.laravel-news.com/wp-content/uploads/2016/09/vuejs.png?resize=1400%2C709'
         }
 
-        console.log(ad)
+        this.$store.dispatch('createAd', ad)
       }
     }
   },
