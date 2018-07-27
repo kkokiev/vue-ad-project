@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import * as fb from 'firebase' 
+import * as fb from 'firebase'
 import App from './App'
 import router from './router'
 import store from './store'
@@ -25,7 +25,7 @@ new Vue({
       projectId: 'vue-ads-bb98a',
       storageBucket: 'vue-ads-bb98a.appspot.com',
       messagingSenderId: '999372150787'
-    };
+    }
 
     fb.initializeApp(config)
   }
