@@ -11,7 +11,7 @@
               :src="ad.imageSrc"
             >
               <div class="carousel-link">
-                <v-btn class="error" :to="'/ad/' + ad.id">{{ad.title}}</v-btn>
+                <v-btn class="error" :to="'/ad/' + ad.id">{{ ad.title }}</v-btn>
               </div>
             </v-carousel-item>
           </v-carousel>
@@ -38,8 +38,8 @@
 
             <v-card-title primary-title>
               <div>
-                <h3 class="headline mb-0">{{ad.title}}</h3>
-                <div>{{ad.description}}</div>
+                <h3 class="headline mb-0">{{ ad.title }}</h3>
+                <div>{{ ad.description }}</div>
               </div>
             </v-card-title>
 

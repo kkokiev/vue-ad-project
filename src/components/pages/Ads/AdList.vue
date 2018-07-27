@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="text-secondary mb-3">My ads</h1>
+        <page-title title="Ad list"></page-title>
 
         <v-card
           class="elevation-10 mb-4"
@@ -19,8 +19,8 @@
             </v-flex>
             <v-flex xs8>
               <v-card-text>
-                <h2 class="priamry">{{ad.title}}</h2>
-                <p>{{ad.description}}</p>
+                <h2 class="priamry">{{ ad.title }}</h2>
+                <p>{{ ad.description }}</p>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import PageTitle from '@/components/ui/PageTitle'
+
 export default {
   data () {
     return {
@@ -63,6 +65,9 @@ export default {
         }
       ]
     }
+  },
+  components: {
+    'page-title': PageTitle
   }
 }
 </script>

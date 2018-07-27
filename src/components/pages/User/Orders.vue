@@ -3,7 +3,7 @@
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
 
-        <h1 class="text--secondary mb-3">Orders</h1>
+        <page-title title="Orders"></page-title>
         
         <v-list
           two-line
@@ -21,8 +21,8 @@
             </v-list-tile-action>
 
             <v-list-tile-content>
-              <v-list-tile-title>{{order.name}}</v-list-tile-title>
-              <v-list-tile-sub-title>{{order.phone}}</v-list-tile-sub-title>
+              <v-list-tile-title>{{ order.name }}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ order.phone }}</v-list-tile-sub-title>
             </v-list-tile-content>
 
             <v-list-tile-action>
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import PageTitle from '@/components/ui/PageTitle'
+
 export default {
   data () {
     return {
@@ -59,6 +61,9 @@ export default {
     markDone (order) {
       order.done = true
     }
+  },
+  components: {
+    'page-title': PageTitle
   }
 }
 </script>

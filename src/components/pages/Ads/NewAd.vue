@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="text--secondary mb-3">Create new ad</h1>
+        <page-title title="Create new ad"></page-title>
 
         <v-form v-model="form.valid" ref="form" validation class="mb-3">
           <v-text-field
@@ -60,6 +60,8 @@
 </template>
 
 <script>
+import PageTitle from '@/components/ui/PageTitle'
+
 export default {
   data () {
     return {
@@ -91,6 +93,9 @@ export default {
         console.log(ad)
       }
     }
+  },
+  components: {
+    'page-title': PageTitle
   }
 }
 </script>
