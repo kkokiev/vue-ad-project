@@ -72,9 +72,6 @@ export default {
 
         console.log(user)
       }
-    },
-    clear () {
-      this.$refs.form.reset()
     }
   }
 }
