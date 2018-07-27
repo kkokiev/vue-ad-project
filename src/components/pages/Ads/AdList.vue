@@ -2,11 +2,11 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <page-title title="Ad list"></page-title>
+        <page-title title="My ads"></page-title>
 
         <v-card
           class="elevation-10 mb-4"
-          v-for="ad in ads"
+          v-for="ad in adsMy"
           :key="ad.id"
         >
           <v-layout row>
@@ -39,31 +39,9 @@
 import PageTitle from '@/components/ui/PageTitle'
 
 export default {
-  data () {
-    return {
-      ads: [
-        {
-          title: 'First ad',
-          description: 'Hello i am description',
-          promo: false,
-          imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          id: '1'
-        },
-        {
-          title: 'Second ad',
-          description: 'Hello i am description',
-          promo: false,
-          imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          id: '2'
-        },
-        {
-          title: 'Third ad',
-          description: 'Hello i am description',
-          promo: false,
-          imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          id: '3'
-        }
-      ]
+  computed: {
+    adsMy () {
+      return this.$store.getters.adsMy
     }
   },
   components: {
