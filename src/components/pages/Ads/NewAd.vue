@@ -49,7 +49,8 @@
             <v-btn
               class="success"
               @click="onSubmit"
-              :disabled="!form.valid"
+              :loading="loading"
+              :disabled="!form.valid || loading"
             >Create ad</v-btn>
           </v-flex>
         </v-layout>
@@ -81,6 +82,11 @@ export default {
       }
     }
   },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
   methods: {
     onSubmit () {
       if (this.$refs.form.validate()) {
@@ -92,6 +98,10 @@ export default {
         }
 
         this.$store.dispatch('createAd', ad)
+          .then(() => {
+            this.$router.push('/list')
+          })
+          .catch(() => {})
       }
     }
   },
