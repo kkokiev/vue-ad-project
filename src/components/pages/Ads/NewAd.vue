@@ -25,10 +25,18 @@
 
         <v-layout row class="mb-3">
           <v-flex xs12>
-            <v-btn class="primary">
+            <v-btn class="primary" @click="onUpload">
               Upload image
               <v-icon right>cloud_upload</v-icon>
             </v-btn>
+
+            <input
+              ref="fileInput"
+              type="file"
+              style="display: none;"
+              accept="image/*"
+              @change="onFileChange"
+            >
 
             <v-switch
               label="Add to promo?"
@@ -39,7 +47,7 @@
 
         <v-layout row>
           <v-flex xs12>
-            <img src="https://cdn.vuetifyjs.com/images/carousel/planet.jpg" height="120">
+            <img :src="form.imageSrc" height="120" v-if="form.imageSrc">
           </v-flex>
         </v-layout>
 
@@ -50,7 +58,7 @@
               class="success"
               @click="onSubmit"
               :loading="loading"
-              :disabled="!form.valid || loading"
+              :disabled="!form.valid || !form.image || loading"
             >Create ad</v-btn>
           </v-flex>
         </v-layout>
@@ -70,7 +78,9 @@ export default {
         title: '',
         description: '',
         promo: false,
-        valid: false
+        valid: false,
+        image: null,
+        imageSrc: ''
       },
       rules: {
         title: [
@@ -89,12 +99,12 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate() && this.form.image) {
         const ad = {
           title: this.form.title,
           description: this.form.description,
           promo: this.form.promo,
-          imageSrc: 'https://i2.wp.com/wp.laravel-news.com/wp-content/uploads/2016/09/vuejs.png?resize=1400%2C709'
+          imageSrc: this.form.imageSrc
         }
 
         this.$store.dispatch('createAd', ad)
@@ -103,6 +113,20 @@ export default {
           })
           .catch(() => {})
       }
+    },
+    onUpload () {
+      this.$refs.fileInput.click()
+    },
+    onFileChange (event) {
+      const file = event.target.files[0]
+
+      const reader = new FileReader()
+
+      reader.onload = e => {
+        this.form.imageSrc = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.form.image = file
     }
   },
   components: {
